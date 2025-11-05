@@ -1,12 +1,12 @@
 {
   "name": "server-side-code",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "author": "",
   "description": "",
   "scripts": {
-    "start": "nodemon server.js",
-    "start:prod": "node server.js"
+    "start": "nodemon index.js",
+    "start:prod": "node index.js"
   },
   "keywords": [],
   "license": "ISC",
