@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const { StatusCodes } = require('http-status-toolkit');
 const app = express();
 
 const port = process.env.PORT || 5000;
@@ -36,7 +37,7 @@ async function run() {
     app.get('/users', async (req, res) => {
       const cursor = userCollection.find();
       const result = await cursor.toArray();
-      res.send(result)
+      res.status(StatusCodes.OK).send(result)
     })
 
     app.get('/users/:id', async (req, res) => {
@@ -44,20 +45,20 @@ async function run() {
       const query = { _id: new ObjectId(id) }
       const result = await userCollection.findOne(query);
 
-      res.send(result)
+      res.status(StatusCodes.OK).send(result)
     })
 
     app.post('/users', async (req, res) => {
       const user = req.body;
       const result = await userCollection.insertOne(user)
-      res.send(result)
+      res.status(StatusCodes.OK).send(result)
     })
 
     // add items related api
   app.get('/items', async (req, res) => {
     const cursor = itemCollection.find();
     const result = await cursor.toArray();
-    res.send(result);
+    res.status(StatusCodes.OK).send(result);
   });
     
     app.get('/items/:id', async (req, res) => {
@@ -65,13 +66,13 @@ async function run() {
       const query = { _id: new ObjectId(id) };
       const result = await itemCollection.findOne(query);
 
-      res.send(result);
+      res.status(StatusCodes.OK).send(result);
     });
 
     app.post('/items', async (req, res) => {
        const user = req.body;
        const result = await itemCollection.insertOne(user);
-       res.send(result);
+       res.status(StatusCodes.CREATED).send(result);
     })
 
      app.patch('/items/:id', async (req, res) => {
@@ -124,6 +125,8 @@ run().catch(console.dir);
 app.get('/', (req, res) => {
   res.send('server is running smoothly');
 });
+
+
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
