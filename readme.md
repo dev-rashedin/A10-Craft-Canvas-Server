@@ -35,8 +35,8 @@ It’s built with **Express.js** and **MongoDB**, providing RESTful CRUD operati
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/craft-canvas-server.git
-cd craft-canvas-server
+git clone https://github.com/dev-rashedin/A10-Craft-Canvas-Server.git
+cd A10-Craft-Canvas-Server
 ```
 
 ### 2️⃣ Install Dependencies
@@ -85,21 +85,6 @@ http://localhost:5000
 |--------|------------------|--------------------------|
 | GET    | `/category`      | Get all subcategories    |
 
----
-
-## 🧱 Project Structure
-```
-craft-canvas-server/
-├── src/
-│   ├── routes/
-│   ├── models/
-│   ├── controllers/
-│   ├── config/
-│   └── server.js
-├── .env
-├── package.json
-└── README.md
-```
 
 ---
 
