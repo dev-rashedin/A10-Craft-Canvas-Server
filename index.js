@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const { StatusCodes } = require('http-status-toolkit');
+const { notFoundHandler, globalErrorHandler } = require('express-error-toolkit');
 const app = express();
 
 const port = process.env.PORT || 5000;
@@ -122,12 +123,18 @@ async function run() {
 run().catch(console.dir);
 
 
+// basic route
 app.get('/', (req, res) => {
-  res.send('server is running smoothly');
+  res.status(StatusCodes.OK).send('server is running smoothly');
 });
 
 
+// not found handler and global error handler
+app.use(notFoundHandler)
+app.use(globalErrorHandler)
 
+
+// start the server
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
 });
