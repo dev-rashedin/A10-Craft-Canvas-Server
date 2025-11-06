@@ -1,49 +1,32 @@
-# express-basic-js
+# 🖌️ Craft Canvas Server
 
-A minimal Express backend starter with CORS, dotenv, and built-in error handling using `express-error-toolkit` and `http-status-toolkit`.
+The **Craft Canvas Server** is the backend API for the [Craft Canvas](https://craft-canvas-server-hazel.vercel.app) project.  
+It’s built with **Express.js** and **MongoDB**, providing RESTful CRUD operations for users, items, and categories.
 
-## Features
+---
 
-- Express setup with CORS and JSON/urlencoded body parsing
-- Environment config via `.env` (see .env.example)
-- 404 and global error handlers out of the box using `express-error-toolkit`
-- Clean status codes using `http-status-toolkit`
+## 🚀 Live Server
+🔗 **[Visit Live API](https://craft-canvas-server-hazel.vercel.app)**
 
-## Getting Started
+---
 
-1. Clone the repo or use it as a template for your project.
-2. Rename `.env.example` to `.env` and adjust if needed:
+## 🧩 Features & Characteristics
+- ⚡ **Express.js** — Fast and lightweight backend framework  
+- 🗄️ **MongoDB** — Flexible and powerful NoSQL database  
+- 🧰 **CRUD Operations** for Users, Items, and Categories  
+- 🔁 **RESTful API** structure  
+- 🧠 Organized codebase for easy scalability  
+- ✅ Uses **async/await**, **status codes**, and **asyncHandler** for error safety  
 
-```bash
-cp .env.example .env
-```
+---
 
-Install dependencies:
+## 🛠️ Technologies Used
+- **Node.js**
+- **Express.js**
+- **MongoDB (Native Driver)**
+- **Dotenv**
+- **Cors**
+- **http-status-codes**
+- **express-async-handler**
 
-```bash
-npm install
-# or
-pnpm install
-# or
-yarn install
-```
-
-4. Start the dev server:
-
-```bash
-npm run dev
-```
-
-### Usage
-
-The app listens on the port defined in .env (PORT), defaulting to 3000.
-Access the root route at / to check server status.
-
-### Notes
-
-- The folder structure is set up to help you organize your code clearly.
-- The `express-error-toolkit` handles error middleware out of the box.
-- Feel free to customize and expand according to your app’s needs.
-
-License
-MIT
+---
