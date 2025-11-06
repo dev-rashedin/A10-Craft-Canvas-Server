@@ -127,12 +127,15 @@ async function run() {
     );
 
     // subcategory api
-    app.get('/category', async (req, res) => {
-      const cursor = categoryCollection.find();
-      const result = await cursor.toArray();
+    app.get(
+      '/category',
+      asyncHandler(async (req, res) => {
+        const cursor = categoryCollection.find();
+        const result = await cursor.toArray();
 
-      res.send(result)
-    })
+        res.send(result);
+      })
+    );
 
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 });
