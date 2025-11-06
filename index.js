@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const { StatusCodes } = require('http-status-toolkit');
-const { notFoundHandler, globalErrorHandler } = require('express-error-toolkit');
+const { notFoundHandler, globalErrorHandler, asyncHandler } = require('express-error-toolkit');
 const app = express();
 
 const port = process.env.PORT || 5000;
@@ -35,53 +35,73 @@ async function run() {
     const categoryCollection = client.db('craftCanvasDB').collection('subcategory')
 
     // user related api
-    app.get('/users', async (req, res) => {
-      const cursor = userCollection.find();
-      const result = await cursor.toArray();
-      res.status(StatusCodes.OK).send(result)
-    })
+    app.get(
+      '/users',
+      asyncHandler(async (req, res) => {
+        const cursor = userCollection.find();
+        const result = await cursor.toArray();
+        res.status(StatusCodes.OK).send(result);
+      })
+    );
 
-    app.get('/users/:id', async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) }
-      const result = await userCollection.findOne(query);
+    app.get(
+      '/users/:id',
+      asyncHandler(async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await userCollection.findOne(query);
 
-      res.status(StatusCodes.OK).send(result)
-    })
+        res.status(StatusCodes.OK).send(result);
+      })
+    );
 
-    app.post('/users', async (req, res) => {
-      const user = req.body;
-      const result = await userCollection.insertOne(user)
-      res.status(StatusCodes.OK).send(result)
-    })
+    app.post(
+      '/users',
+      asyncHandler(async (req, res) => {
+        const user = req.body;
+        const result = await userCollection.insertOne(user);
+        res.status(StatusCodes.OK).send(result);
+      })
+    );
 
     // add items related api
-  app.get('/items', async (req, res) => {
-    const cursor = itemCollection.find();
-    const result = await cursor.toArray();
-    res.status(StatusCodes.OK).send(result);
-  });
+    app.get(
+      '/items',
+      asyncHandler(async (req, res) => {
+        const cursor = itemCollection.find();
+        const result = await cursor.toArray();
+        res.status(StatusCodes.OK).send(result);
+      })
+    );
     
-    app.get('/items/:id', async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await itemCollection.findOne(query);
+    app.get(
+      '/items/:id',
+      asyncHandler(async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await itemCollection.findOne(query);
 
-      res.status(StatusCodes.OK).send(result);
-    });
+        res.status(StatusCodes.OK).send(result);
+      })
+    );
 
-    app.post('/items', async (req, res) => {
-       const user = req.body;
-       const result = await itemCollection.insertOne(user);
-       res.status(StatusCodes.CREATED).send(result);
-    })
+    app.post(
+      '/items',
+      asyncHandler(async (req, res) => {
+        const user = req.body;
+        const result = await itemCollection.insertOne(user);
+        res.status(StatusCodes.CREATED).send(result);
+      })
+    );
 
-     app.patch('/items/:id', async (req, res) => {
-       const id = req.params.id;
-       console.log(id)
-       
-       const updatedUserInfo = req.body
-       const query = { _id: new ObjectId(id) };
+    app.patch(
+      '/items/:id',
+      asyncHandler(async (req, res) => {
+        const id = req.params.id;
+        console.log(id);
+
+        const updatedUserInfo = req.body;
+        const query = { _id: new ObjectId(id) };
 
         const updatedUser = {
           $set: {
@@ -89,18 +109,22 @@ async function run() {
           },
         };
 
-       const result = await itemCollection.updateOne(query, updatedUser);
+        const result = await itemCollection.updateOne(query, updatedUser);
 
-       res.send(result);
-     });
+        res.status(StatusCodes.OK).send(result);
+      })
+    );
 
-    app.delete('/items/:id', async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await itemCollection.deleteOne(query);
+    app.delete(
+      '/items/:id',
+      asyncHandler(async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await itemCollection.deleteOne(query);
 
-      res.send(result)
-    })
+        res.status(StatusCodes.OK).send(result);
+      })
+    );
 
     // subcategory api
     app.get('/category', async (req, res) => {
