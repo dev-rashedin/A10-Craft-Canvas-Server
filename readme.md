@@ -30,3 +30,92 @@ It’s built with **Express.js** and **MongoDB**, providing RESTful CRUD operati
 - **express-async-handler**
 
 ---
+
+## 📦 Installation & Setup
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/your-username/craft-canvas-server.git
+cd craft-canvas-server
+```
+
+### 2️⃣ Install Dependencies
+```bash
+npm install
+```
+
+### 3️⃣ Setup Environment Variables
+Create a `.env` file in the root directory and add:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+```
+
+### 4️⃣ Run the Server
+```bash
+npm run dev
+```
+Your backend will be live at:
+```
+http://localhost:5000
+```
+
+---
+
+## 🧪 API Endpoints
+
+### 🧍‍♂️ User Routes
+| Method | Endpoint         | Description              |
+|--------|------------------|--------------------------|
+| GET    | `/users`         | Get all users            |
+| GET    | `/users/:id`     | Get a user by ID         |
+| POST   | `/users`         | Create a new user        |
+
+### 🎨 Item Routes
+| Method | Endpoint         | Description              |
+|--------|------------------|--------------------------|
+| GET    | `/items`         | Get all items            |
+| GET    | `/items/:id`     | Get an item by ID        |
+| POST   | `/items`         | Add a new item           |
+| PATCH  | `/items/:id`     | Update an item by ID     |
+| DELETE | `/items/:id`     | Delete an item by ID     |
+
+### 🗂️ Category Routes
+| Method | Endpoint         | Description              |
+|--------|------------------|--------------------------|
+| GET    | `/category`      | Get all subcategories    |
+
+---
+
+## 🧱 Project Structure
+```
+craft-canvas-server/
+├── src/
+│   ├── routes/
+│   ├── models/
+│   ├── controllers/
+│   ├── config/
+│   └── server.js
+├── .env
+├── package.json
+└── README.md
+```
+
+---
+
+## 💡 Future Improvements
+- Add authentication (JWT-based)
+- Add validation and error middleware
+- Implement file uploads with Cloudinary or AWS S3
+
+---
+
+## 🧑‍💻 Author
+**Rashedin Islam**  
+🔗 [Portfolio](https://www.rashedin.dev)  
+🔗 [LinkedIn](https://www.linkedin.com/in/dev-rashedin)  
+🔗 [GitHub](https://github.com/dev-rashedin)
+
+---
+
+⭐ *If you like this project, please consider giving it a star on GitHub!*
